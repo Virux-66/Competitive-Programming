@@ -12,6 +12,7 @@ using namespace std;
  * with j transactions where the stock is kept.
  * sell[i][j] represents the maximum profile for prices[0...i] with
  * j transactions where the stock is not kept.
+ * OJ: https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-iv/
 */
 int maxProfit(int k, vector<int>& prices) {
     int n = prices.size();
