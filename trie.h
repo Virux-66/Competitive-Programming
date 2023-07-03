@@ -36,3 +36,5 @@ class trie{
 			tree[v].leaf=true;
 		}
 };
+
+
