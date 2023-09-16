@@ -27,28 +27,30 @@ int minimumCostPath(std::vector<std::vector<int>>& grid)
         pq.pop();
         int i = val.second / n;
         int j = val.second % n;
-        
-        if(i - 1 >= 0 && !visited[i - 1][j]){
-            int tmp = dp[i][j] + grid[i - 1][j];
-            dp[i - 1][j] = std::min(dp[i - 1][j], tmp);
-            pq.push(std::make_pair(dp[i - 1][j], (i - 1)*n + j));
+        // The same node might be pushed to priority queue more than one.
+        if(!visited[i][j]){
+            if(i - 1 >= 0 && !visited[i - 1][j]){
+                int tmp = dp[i][j] + grid[i - 1][j];
+                dp[i - 1][j] = std::min(dp[i - 1][j], tmp);
+                pq.push(std::make_pair(dp[i - 1][j], (i - 1)*n + j));
+            }
+            if(i + 1 < n && !visited[i + 1][j]){
+                int tmp = dp[i][j] + grid[i + 1][j];
+                dp[i + 1][j] = std::min(dp[i + 1][j], tmp);
+                pq.push(std::make_pair(dp[i + 1][j], (i + 1)*n + j));
+            }
+            if(j - 1 >= 0 && !visited[i][j - 1]){
+                int tmp = dp[i][j] + grid[i][j - 1];
+                dp[i][j - 1] = std::min(dp[i][j - 1], tmp);
+                pq.push(std::make_pair(dp[i][j - 1], i*n + (j - 1)));
+            }
+            if( j + 1 < n && !visited[i][j + 1]){
+                int tmp = dp[i][j] + grid[i][j + 1];
+                dp[i][j + 1] = std::min(dp[i][j + 1], tmp);
+                pq.push(std::make_pair(dp[i][j + 1], i*n + (j + 1)));
+            }
+            visited[i][j] = true;
         }
-        if(i + 1 < n && !visited[i + 1][j]){
-            int tmp = dp[i][j] + grid[i + 1][j];
-            dp[i + 1][j] = std::min(dp[i + 1][j], tmp);
-            pq.push(std::make_pair(dp[i + 1][j], (i + 1)*n + j));
-        }
-        if(j - 1 >= 0 && !visited[i][j - 1]){
-            int tmp = dp[i][j] + grid[i][j - 1];
-            dp[i][j - 1] = std::min(dp[i][j - 1], tmp);
-            pq.push(std::make_pair(dp[i][j - 1], i*n + (j - 1)));
-        }
-        if( j + 1 < n && !visited[i][j + 1]){
-            int tmp = dp[i][j] + grid[i][j + 1];
-            dp[i][j + 1] = std::min(dp[i][j + 1], tmp);
-            pq.push(std::make_pair(dp[i][j + 1], i*n + (j + 1)));
-        }
-        visited[i][j] = true;
     }
     return dp[n - 1][n - 1];
 }   
