@@ -1,5 +1,4 @@
 #include<bits/stdc++.h>
-using namespace std;
 
 /**
  * Algorithm: 0-1 knapsack problem
@@ -12,13 +11,17 @@ using namespace std;
  * OJ: https://www.geeksforgeeks.org/0-1-knapsack-problem-dp-10/
 */
 
-int kanpsack(int w, vector<int> weights, vector<int> values){
+int kanpsack(int w, std::vector<int> weights, std::vector<int> values){
     int n = weights.size();
-    vector<vector<int>> dp(n+1, vector<int>(w+1,0));
+    std::vector<std::vector<int>> dp(n+1, std::vector<int>(w+1,0));
     for(int i=1; i<=n; i++){
         for(int j=1; j<=w; j++){
             if(j>=weights[i]){
-                dp[i][j] = max(dp[i-1][j],values[i-1] + dp[i-1][j-weights[i-1]]);
+                dp[i][j] = std::max(dp[i-1][j],values[i-1] + dp[i-1][j-weights[i-1]]);
+                /**
+                 * With duplicated items
+                 * dp[i][j] = std::max(dp[i-1][j], values[i-1] + dp[i][j-weight[i-1]]);
+                */
             }else{
                 dp[i][j] = dp[i-1][j];
             }
