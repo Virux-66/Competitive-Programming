@@ -21,7 +21,7 @@ bool canPartition(vector<int>& nums) {
     if(sum%2){
         return false;
     }
-    vector<vector<int>> dp(n+1, vector<int>(sum/2+1,false));
+    std::vector<std::vector<int>> dp(n+1, std::vector<int>(sum/2+1,false));
     for(int i=1; i<n+1; i++){
         for(int j=1; j<sum/2+1; j++){
             if(nums[i-1] == j){

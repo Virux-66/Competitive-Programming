@@ -14,9 +14,10 @@
  * with non-broken, check 27-th floor. If egg in 27-th is broken, we only need to check 15 to 26(12 floors at most) 
  * which also causes 14 trials(trial(14) + trial(27) + trial(15 to 26)).
  * If egg in 27-th is not broken, then 39, 50, 60, 69, 77, 84, 90, 95, 99, 100.
+ * OJ: https://practice.geeksforgeeks.org/problems/egg-dropping-puzzle-1587115620/1?utm_source=gfg&utm_medium=article&utm_campaign=bottom_sticky_on_article
  * 
  * Analysis: Let dp[n][k] be the minimal trials for n eggs and k floors. The recursive formulation is:
- * dp[n][k] = 1 + min(max(dp[n-1][i-1], dp[n][k - i])) i = 1 ... n
+ * dp[n][k] = 1 + min(max(dp[n-1][i-1], dp[n][k - i])) i = 1 ... k
  * base case: dp[0][1...k] = INT_MAX
  *            dp[1][1...k] = k
  *            dp[1...n][0] = 0
