@@ -5,6 +5,7 @@ using namespace std;
  * Algorithm: longest common substring
  * Type: DP
  * Statement: Given two string. Find the longest substring.
+ * OJ: https://www.geeksforgeeks.org/longest-common-substring-dp-29/
 */
 
 int longestCommonSubstring(string word1, string word2){

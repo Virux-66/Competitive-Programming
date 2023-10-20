@@ -7,6 +7,7 @@ using namespace std;
  * Statement: Given a rod of length N inches and array of prices.
  * prices[i] denotes that value of a piece of length i.
  * Determine the maximum value obtainable by cutting up the rod.
+ * OJ: https://www.geeksforgeeks.org/cutting-a-rod-dp-13/
 */
 
 int rodCutting(vector<int> prices){

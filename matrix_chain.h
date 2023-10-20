@@ -7,6 +7,7 @@ using namespace std;
  * Statement: Given a sequence of matrices, find the most efficient way to multiply
  * these matrices together. The efficient way is the one that involves the least
  * number of multiplication
+ * OJ: https://www.geeksforgeeks.org/matrix-chain-multiplication-dp-8/
 */
 
 int matrixMulplication(vector<int> arr){

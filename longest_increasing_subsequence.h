@@ -11,6 +11,7 @@ using namespace std;
  * Let dp[i] be the number of longest increasing subsequence ending with S[i], the recursive relation is:
  * dp[i] = 1 + max(dp[j]) where j from 0 to i-1 and S[i] > S[j].
  * dp[i] = 1 if no such a j that S[j] < S[i].
+ * OJ: https://leetcode.cn/problems/longest-increasing-subsequence/
 */
 
 int longestIncreasingSubsequence(std::vector<int>& num){
