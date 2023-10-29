@@ -1,5 +1,4 @@
 #include<bits/stdc++.h>
-using namespace std;
 /* Data structure: Sparse table
  * Detail:	Sparse table can answer most range queries in O(log n), but its true power
  * 			is answring range minimum queries (or equivalent range maximum queries).
@@ -15,24 +14,29 @@ using namespace std;
  * st :  st[i][j] store the answer for the range [j, j+2^i-1]
  */
 
+template <typename T>
 class sparse_table{
 	public:
-		vector<vector<int>> st;
-		sparse_table(vector<int>& vec){
-			int N = vec.size();
-			int K = log2(N);			
-			st = vector<vector<int>>(K+1, vector<int>(N));
-			copy(vec.begin(), vec.end(), st[0]);
-			for(int i=1; i<K+1; i++){
-				for(int j=0; j+(1<<i)<=N; j++){
-					st[i][j]=min(st[i-1][j],st[i-1][j+(1<<(i-1))]);
+		std::vector<std::vector<T>> st;
+		sparse_table(std::vector<T>& vec){
+			int n = vec.size();
+			int k = (int)std::log2(n);			
+			st = std::vector<std::vector<T>>(k+1, std::vector<T>(n));
+
+			for(int i = 0; i < n; i++){
+				st[0][i] = vec[i];
+			}
+
+			for(int i = 1; i < k+1; i++){
+				for(int j = 0; j + (1 << i) <= n; j++){
+					st[i][j] = std::min(st[i-1][j], st[i-1][j + (1 << (i-1))]);
 				}
 			}
 		}
 
 		int query(int i, int j){
-			int dist = j-i+1;
-			int log_dist = int(log2(dist));
-			return min(st[log_dist][i], st[log_dist][i+dist-int(pow(2,log_dist))]);
+			int dist = j - i + 1;
+			int log_dist = int(std::log2(dist));
+			return std::min(st[log_dist][i], st[log_dist][i + dist - int(std::pow(2, log_dist))]);
 		}
 };
