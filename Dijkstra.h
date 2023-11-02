@@ -4,10 +4,10 @@
  * Algorithm: Dijsktra
  */
 
-std::vector<int> Dijstra(std::vector<std::vector<int>> edges, int n, int start){
+std::vector<int> Dijkstra(std::vector<std::vector<int>> edges, int n, int start){
     // edges = {[start1, end1, weight1], ... , {startn, endn, weightn}}    
-    std::vector<std::vector<int>> graph(n, std::vector<int>());
-    std::map<std::pair<int, int>, int> weights;
+
+    std::vector<std::vector<std::pair<int, int>>> graph(n, std::vector<std::pair<int, int>>());
     std::vector<int> dist(n, INT_MAX);
     std::priority_queue<std::pair<int, int>, std::vector<std::pair<int, int>>, std::greater<std::pair<int, int>>> pq;
     std::vector<bool> visited(n, false);
@@ -17,8 +17,7 @@ std::vector<int> Dijstra(std::vector<std::vector<int>> edges, int n, int start){
         int u = edges[i][0];
         int v = edges[i][1];
         int w = edges[i][2];
-        graph[u].push_back(v);
-        weights.insert({{u, v}, w});
+        graph[u].push_back({v, w});
     }
     dist[start] = 0;
     pq.push({dist[start], start});
@@ -34,12 +33,12 @@ std::vector<int> Dijstra(std::vector<std::vector<int>> edges, int n, int start){
             continue;
         }
         for(int i = 0; i < graph[u].size(); i++){
-            int v = graph[u][i];
-            int w = weights[{u, v}];
+            int v = graph[u][i].first;
+            int w = graph[u][i].second;
             if(visited[v]){
                 continue;
             }
-            dist[v] = std::min(dist[v], dist[u] + w);
+            dist[v] = std::min(dist[v], pr.first + w);
             pq.push({dist[v], v});
         }
         visited[u] = true;
