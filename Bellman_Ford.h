@@ -12,23 +12,30 @@
  * Time Complexity: O(|V|*|E|)
 */
 // pesudo-code
-std::vector<int> BellmanFord(std::vector<int> vertices, std::vector<std::pair<std::pair<int, int>,int>> edges, int source){
-    int n = vertices.size();
-    std::vector<int> distance(n, INT_MAX);
-    std::vector<int> predecessor(n, -1);
+std::vector<int> BellmanFord(std::vector<std::vector<int>> edges, int n, int start){
+    std::vector<std::vector<std::pair<int, int>>> graph(n, std::vector<std::pair<int, int>>());
+    std::vector<int> dist(n, INT_MAX);
     
-    distance[source] = 0;
+    for(int i = 0; i < edges.size(); i++){
+        int u = edges[i][0];
+        int v = edges[i][1];
+        int w = edges[i][2];
+        graph[u].push_back({v, w});
+    }
+
+    dist[start] = 0;
+
     for(int i = 0; i < n - 1; i++){
-        // For each round, relax every edge
-        for(auto edge: edges){
-            int u = edge.first.first;
-            int v = edge.first.second;
-            int w = edge.second;
-            if(distance[u] + w < distance[v]){
-                distance[v] = distance[u] + w;
-                predecessor[v] = u;
+        for(int j = 0; j < n; j++){
+            for(int k = 0; k < graph[j].size(); k++){
+                int u = j;
+                int v = graph[j][k].first;
+                int w = graph[j][k].second;
+                if(dist[u] != INT_MAX){
+                    dist[v] = std::min(dist[v], dist[u] + w);
+                }
             }
         }
     }
-    return distance;
+    return dist;
 }
