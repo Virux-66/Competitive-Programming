@@ -3,6 +3,10 @@
 /**
  * Algorithm: minimum spanning tree - Kruskal algorithm(based on DSU)
  * Time Complexity: O(|E|log|E| + |V|)
+ * Note: For each iteration of selecting edge, it's ok that the vertexs
+ * of this edge are not at the same set. But for Prim algorithm,
+ * for eac iteration of selecting edge, the edge must be connecting
+ * the selected set and unselected set.
  */
 class Dsu{
     public:
