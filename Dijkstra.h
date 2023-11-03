@@ -2,6 +2,7 @@
 
 /**
  * Algorithm: Dijsktra
+ * Time Complexity: O(|E| + |V|log|V|)
  */
 
 std::vector<int> Dijkstra(std::vector<std::vector<int>> edges, int n, int start){
