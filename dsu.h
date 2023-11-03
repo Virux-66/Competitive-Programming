@@ -1,5 +1,4 @@
 #include<bits/stdc++.h>
-using namespace std;
 
 /**
  * Data structure: disjoint Set Union(DSU)
@@ -13,12 +12,12 @@ using namespace std;
 
 class dsu{
     public:
-        vector<int> parents;        
-        vector<int> size;
-        dsu(vector<int>& vec){
+        std::vector<int> parents;        
+        std::vector<int> size;
+        dsu(std::vector<int>& vec){
             int n=vec.size();
-            parents=vector<int>(n);
-            size=vector<int>(n);
+            parents=std::vector<int>(n);
+            size=std::vector<int>(n);
             for(int i=0; i<n; i++){
                 parents[i]=i;
                 size[i]=1;
@@ -35,7 +34,7 @@ class dsu{
             int pb=find_set(b);
             if(pa != pb){
                 if(size[pa] < size[pb]){
-                    swap(pa,pb);
+                    std::swap(pa,pb);
                 }
                 parents[pb]=pa;
                 size[pa]+=size[pb];
