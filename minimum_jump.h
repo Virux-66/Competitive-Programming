@@ -30,3 +30,17 @@ int minimumJump(std::vector<int> nums){
     }
     return dp[n - 1];
 }
+
+int canReach(std::vector<int> nums){
+        int n = nums.size();
+        int farthest = 0;
+        farthest += nums[0];
+        for(int i = 1; i < n; ++i){
+            if(i <= farthest){
+                farthest = std::max(farthest, i + nums[i]);
+            }else{
+                return 0;
+            }
+        }
+        return 1;
+}
