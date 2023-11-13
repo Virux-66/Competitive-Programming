@@ -82,3 +82,21 @@ std::map<int, int> index;
         int value = commonParent(preorder, 0, n - 1, inorder, 0, n - 1, p, q);
         return new TreeNode(value);
     }
+
+    TreeNode* lowestCommonAncestorRecursive(TreeNode* root, TreeNode* p, TreeNode* q){
+        if(root == nullptr || root == p || root == q){
+            return root;
+        }
+        TreeNode* left = lowestCommonAncestorRecursive(root->left, p, q);
+        TreeNode* right= lowestCommonAncestorRecursive(root->right, p, q);
+        if(left == nullptr && right == nullptr){
+            return nullptr;
+        }
+        if(left == nullptr){
+            return right;
+        }
+        if(right == nullptr){
+            return left;
+        }
+        return root;
+    }
