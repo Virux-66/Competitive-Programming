@@ -7,27 +7,32 @@
  * the index of the elements in the stack and make sure
  * the elements corresponding to those indexes in the stack
  * forms a mono-sequence.
- * OJ: https://leetcode.cn/problems/daily-temperatures/description/
  */
-std::vector<int> dailyTemperatures(std::vector<int>& temperatures){
-    int n = temperatures.size();
-    std::stack<int> s;
-    std::vector<int> ans(n, 0);
-    for(int i = 0; i < temperatures.size(); ++i){
-        if(s.empty()){
-            s.push(i);
-            continue;
-        }
-        if(temperatures[s.top()] < temperatures[i]){
-            while(!s.empty() && temperatures[s.top()] < temperatures[i]){
-                int index = s.top();
-                s.pop();
-                ans[index] = i - index;
+
+template <typename T, typename Compare = std::greater<T>>
+class MonotonicStack{
+    public:
+        MonotonicStack(std::vector<T>& v) : vec_(v){}
+        void Push(int index){
+            T value = vec_[index];
+            if(sk_.empty()){
+                sk_.push(index);
+                return;
             }
-            s.push(i);
-        }else{
-            s.push(i);
+            while(sk_.size() && !comp_(value, vec_[sk_.top()])){
+                sk_.pop();
+            }
+            sk_.push(index); 
         }
-    }
-    return ans;
-}
+
+        T Pop(){
+            auto value = sk_.top();
+            sk_.pop();
+            return value;
+        }
+        
+
+        std::vector<T> vec_;
+        std::stack<T> sk_;
+        Compare comp_;
+};
