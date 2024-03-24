@@ -33,7 +33,7 @@ class SparseTable{
 			}
 		}
 
-		T query(int i, int j){
+		T Query(int i, int j){
 			int dist = j - i + 1;
 			int log_dist = int(std::log2(dist));
 			return functor(st_[log_dist][i], st_[log_dist][i + dist - int(std::pow(2, log_dist))]);

@@ -10,32 +10,32 @@
  *         exceed 4 for all reasonable n.
 */
 
-class dsu{
+class Dsu{
     public:
         std::vector<int> parents;        
         std::vector<int> size;
-        dsu(int n){
-            parents=std::vector<int>(n);
-            size=std::vector<int>(n);
-            for(int i=0; i<n; i++){
+        Dsu(int n){
+            parents = std::vector<int>(n);
+            size = std::vector<int>(n);
+            for(int i = 0; i < n; i++){
                 parents[i] = i;
                 size[i] = 1;
             }
         }
-        int find_set(int v){
+        int FindSet(int v){
             if(parents[v] == v){
                 return v;
             }
-            return parents[v] = find_set(parents[v]);
+            return parents[v] = FindSet(parents[v]);
         }
-        void union_set(int a, int b){
-            int pa = find_set(a);
-            int pb = find_set(b);
+        void UnionSet(int a, int b){
+            int pa = FindSet(a);
+            int pb = FindSet(b);
             if(pa != pb){
                 if(size[pa] < size[pb]){
                     std::swap(pa,pb);
                 }
-                parents[pb]=pa;
+                parents[pb] = pa;
                 size[pa] += size[pb];
             }
         }
