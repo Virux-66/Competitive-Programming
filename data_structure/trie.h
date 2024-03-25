@@ -1,5 +1,4 @@
 #include<bits/stdc++.h>
-using namespace std;
 /* Data structure: Trie
  * Detail:Formally a Trie is a rooted tree, where each edge of the tree is labeled 
  * 		by a letter. All outgoing edge from one vertex must have different labels.
@@ -12,29 +11,42 @@ using namespace std;
 #define K 26
 class vertex{
 	public:
-		int next[K];
-		bool leaf=false;
-		vertex(){
-			fill(begin(next), end(next), -1);
-		}
+		std::vector<int> next;
+		bool leaf = false;
+		vertex(): next(K, -1){}
 };
 
 
-class trie{
+class Trie{
 	public:
-		vector<vertex> tree;
-		void add_string(string const& s){
-			int v=0;
-			for(char ch:s){
-				int c=ch-'a';
-				if(tree[v].next[c] == -1){
-					tree[v].next[c]=tree.size();
-					tree.emplace_back();
+		std::vector<vertex> tree_;
+		Trie(){
+			tree_ = std::vector<vertex>(1);
+		}
+		void AddString(const std::string& s){
+			int v = 0;
+			for(char ch : s){
+				int c = ch - 'a';
+				if(tree_[v].next[c] == -1){
+					tree_[v].next[c] = tree_.size();
+					tree_.emplace_back();
 				}
-				v=tree[v].next[c];
+				v = tree_[v].next[c];
 			}
-			tree[v].leaf=true;
+			tree_[v].leaf=true;
+		}
+
+		bool FindString(const std::string& s){
+			int v = 0;
+			for(auto ch : s){
+				int c = ch - 'a';
+				if(tree_[v].next[c] != -1){
+					v = tree_[v].next[c];
+				}else{
+					v = 0;
+					break;
+				}
+			}
+			return tree_[v].leaf;
 		}
 };
-
-
