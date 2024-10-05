@@ -1,5 +1,4 @@
 #include<bits/stdc++.h>
-using namespace std;
 
 /**
  * Algorithm: Rod cutting
@@ -10,14 +9,14 @@ using namespace std;
  * OJ: https://www.geeksforgeeks.org/cutting-a-rod-dp-13/
 */
 
-int rodCutting(vector<int> prices){
+int rodCutting(std::vector<int> prices){
     int n = prices.size();
-    vector<int> dp(n + 1, 0);
+    std::vector<int> dp(n + 1, 0);
     dp[0] = 0;
     dp[1] = prices[0];
     for(int i = 2; i <= n; i++){
         for(int j = 1; j < i; j++){
-            dp[i] = max(dp[i], max(dp[j] + dp[j - i], prices[i - 1]));
+            dp[i] = std::max(dp[i], std::max(dp[j] + dp[j - i], prices[i - 1]));
         }
     }
     return dp[n];

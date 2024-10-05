@@ -1,5 +1,4 @@
 #include<bits/stdc++.h>
-using namespace std;
 
 /**
  * Algorithm: longest common substring
@@ -8,9 +7,9 @@ using namespace std;
  * OJ: https://www.geeksforgeeks.org/longest-common-substring-dp-29/
 */
 
-int longestCommonSubstring(string word1, string word2){
+int longestCommonSubstring(std::string word1, std::string word2){
     int n = word1.length(), m = word2.length();
-    vector<vector<int>> dp(n+1, vector<int>(m+1,0));
+    std::vector<std::vector<int>> dp(n+1, std::vector<int>(m+1,0));
     int result = -1;
     for(int i=1; i<=n; i++){
         for(int j=1; j<=m; j++){
@@ -19,7 +18,7 @@ int longestCommonSubstring(string word1, string word2){
             }else{
                 dp[i][j] = 0;
             }
-            result = max(result, dp[i][j]);
+            result = std::max(result, dp[i][j]);
         }
     }
     return result;

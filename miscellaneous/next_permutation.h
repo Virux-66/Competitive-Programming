@@ -1,7 +1,5 @@
 #include<bits/stdc++.h>
 
-using namespace std;
-
 /**
  * Alogrithm: Find the next permutation
  * Type: 
@@ -25,7 +23,7 @@ using namespace std;
  * possible.
 */
 
-void nextPermutation(vector<int>& nums) {
+void nextPermutation(std::vector<int>& nums) {
     int n = nums.size();
     int pivot = -1;
     for(int i = n-1; i>=1; i--){

@@ -1,7 +1,5 @@
 #include<bits/stdc++.h>
 
-using namespace std;
-
 /**
  * Algorithm: Edit distance
  * Type: DP
@@ -18,9 +16,9 @@ using namespace std;
  * OJ: https://leetcode.cn/problems/edit-distance/description/
 */
 
-int minDistance(string word1, string word2) {
+int minDistance(std::string word1, std::string word2) {
    	int n = word1.length(), m =word2.length();
-    vector<vector<int>> dp(n+1, vector<int>(m+1));
+    std::vector<std::vector<int>> dp(n+1, std::vector<int>(m+1));
     for(int j=0; j<=m; j++){
      dp[0][j] = j;
     }
@@ -31,9 +29,9 @@ int minDistance(string word1, string word2) {
     for(int i=1; i<=n; i++){
      for(int j=1; j<=m; j++){
       if(word1[i-1] == word2[j-1]){
-       dp[i][j] = min(dp[i-1][j-1],1 + min(dp[i-1][j],dp[i][j-1]));
+       dp[i][j] = std::min(dp[i-1][j-1],1 + std::min(dp[i-1][j],dp[i][j-1]));
       }else{
-       dp[i][j] = 1 + min(dp[i-1][j-1],min(dp[i-1][j],dp[i][j-1]));
+       dp[i][j] = 1 + std::min(dp[i-1][j-1],std::min(dp[i-1][j],dp[i][j-1]));
       }
      }
     }

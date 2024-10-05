@@ -1,5 +1,4 @@
 #include<bits/stdc++.h>
-using namespace std;
 
 /**
  * Algorithm: Equal Subset Sum Partition Problem
@@ -12,7 +11,7 @@ using namespace std;
  * OJ: https://leetcode.cn/problems/partition-equal-subset-sum/
 */
 
-bool canPartition(vector<int>& nums) {
+bool canPartition(std::vector<int>& nums) {
     int n = nums.size();
     int sum=0;
     for(int i=0; i<nums.size(); i++){

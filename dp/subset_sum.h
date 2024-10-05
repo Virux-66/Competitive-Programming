@@ -1,5 +1,4 @@
 #include <bits/stdc++.h>
-using namespace std;
 
 /**
  * Algorithm: Subset Sum problem
@@ -9,7 +8,7 @@ using namespace std;
  * OJ: https://www.geeksforgeeks.org/subset-sum-problem-dp-25/
 */
 
-bool isSubsetSum(vector<int>arr, int sum){
+bool isSubsetSum(std::vector<int>arr, int sum){
     int N = arr.size();
     std::vector<std::vector<bool>> dp(sum + 1, std::vector<bool>(N, false));
     

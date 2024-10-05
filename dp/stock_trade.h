@@ -1,5 +1,4 @@
 #include<bits/stdc++.h>
-using namespace std;
 /**
  * Algorithm: Best time to buy and sell stock
  * Type: DP
@@ -14,16 +13,16 @@ using namespace std;
  * j transactions where the stock is not kept.
  * OJ: https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-iv/
 */
-int maxProfit(int k, vector<int>& prices) {
+int maxProfit(int k, std::vector<int>& prices) {
     int n = prices.size();
-    vector<vector<int>> buy(n,vector<int>(k+1));
-    vector<vector<int>> sell(n,vector<int>(k+1));
+    std::vector<std::vector<int>> buy(n,std::vector<int>(k+1));
+    std::vector<std::vector<int>> sell(n,std::vector<int>(k+1));
     buy[0][0] = -prices[0];
     for(int i=1; i<=k; i++){
         buy[0][i] = INT_MIN;
     }
     for(int i=1; i<n; i++){
-        buy[i][0] = max(-prices[i],buy[i-1][0]);
+        buy[i][0] = std::max(-prices[i],buy[i-1][0]);
     }
     for(int i=0; i<=k; i++){
         sell[0][i] = 0;
@@ -33,13 +32,13 @@ int maxProfit(int k, vector<int>& prices) {
     }
     for(int i=1; i<n; i++){
         for(int j=1; j<=k; j++){
-            buy[i][j]=max(buy[i-1][j],sell[i-1][j]-prices[i]);
-            sell[i][j]=max(sell[i-1][j],buy[i-1][j-1]+prices[i]);
+            buy[i][j]=std::max(buy[i-1][j],sell[i-1][j]-prices[i]);
+            sell[i][j]=std::max(sell[i-1][j],buy[i-1][j-1]+prices[i]);
         }
     }
     int result = 0; 
     for(int i=0; i<=k; i++){
-        result = max(result, sell[n-1][i]);
+        result = std::max(result, sell[n-1][i]);
     }
     return result;
 }
